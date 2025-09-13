@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1efef;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #666;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            --maxw: 1100px;
+            --gap: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Latin Modern Roman', serif;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin: 0 0 10px;
+            letter-spacing: .5px;
+        }
+
+        .lead {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            margin: 0 auto 34px;
+            max-width: 900px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        section {
+            margin: 34px 0 44px;
+        }
+
+        section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        /* Reusable 3-up grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap);
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .media {
+            display: block;
+            width: 100%;
+            height: auto; 
+            background: #ddd;
+        }
+
+        .caption {
+            padding: 10px 12px 14px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header>
+            <h1>Project 1</h1>
+            <p class="lead">
+                For my project, I started off with a brute force approach to align the images together. 
+                In this approach, I started off by shifting the green and red version of the images 
+                in order to try to align them to the orientation of the blue version. In order to 
+                figure out how far exactly I needed to shift in order to align them, I searched over a 
+                vast amount of possible pixel shifts, going one by one, scoring how well each shift made 
+                the alignment, then continuing on until I got to the end. In order to score these 
+                alignments, I used normalized cross-correlation, which in essence takes a normalized dot 
+                product between the two images (the green or red and the blue) and sees how similar they 
+                are on a scale from -1 (worst) to 1 (best). This approach worked fine for images with low 
+                resolution, as it was feasible to search over all the reasonable shifts and score them 
+                one by one. However, for images that were of much higher resolution, this approach would 
+                not work very well, as the search space of reasonable alignments would go from maybe a few 
+                thousand to the millions. So for the second part, I started off doing a pyramid approach 
+                based on the brute force approach. What I did was scale the images down by 2 and 8 fold on 
+                their resolution. I then first ran the same brute force algorithm on the 1/8th sized image 
+                to get shifts that were more or less right for the original sized. I then sized up the 
+                shifts by 4 times, applied them on the 1/2 sized image, and then ran the brute force 
+                algorithm on the 1/2 sized image, with the change being that the search space of my 
+                brute force shifts was reduced by a significant amount, to compensate for the fact that 
+                the alignments were at most only a few pixels off as they had already worked on the 
+                smaller version so well. I then repeated the process again, of upscaling the shifts and 
+                running the brute force algorithm, on the full-sized image. The only real issue I ran into 
+                was that my images weren't aligning as well when the resolution got higher, particularly 
+                the red images weren't as well aligned as the green. In order to solve this, I changed 
+                how I did the brute force algorithm slighly: instead of aligning both the green and red 
+                images to the blue image, I first aligned the green image to the blue and then I aligned 
+                the red image to the green. This resulted in much better alignment across the board.
+            </p>
+        </header>
+
+        <section>
+            <header>
+                <h1>Brute Force Approach Results</h1>
+            </header>
+            <div class="card-grid">
+
+                <figure class="card">
+                    <img class="media" src="media/cathedralrgb.jpg" />
+                    <figcaption class="caption">
+                        <strong>Cathedral</strong><br>
+                        Vertical offset for Green: 2<br>
+                        Horizontal offset for Green: -12<br>
+                        Vertical offset for Red: 3<br>
+                        Horizontal offset for Red: -22
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/monasteryrgb.jpg" />
+                    <figcaption class="caption">
+                        <strong>Monastery</strong><br>
+                        Vertical offset for Green: 2<br>
+                        Horizontal offset for Green: -20<br>
+                        Vertical offset for Red: 2<br>
+                        Horizontal offset for Red: -31
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tobolskrgb.jpg" />
+                    <figcaption class="caption">
+                        <strong>Tobolsk</strong><br>
+                        Vertical offset for Green: 3<br>
+                        Horizontal offset for Green: -14<br>
+                        Vertical offset for Red: 3<br>
+                        Horizontal offset for Red: -28
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <header>
+                <h1>Pyramid Approach Results</h1>
+            </header>
+            <div class="card-grid">
+                <!-- 6 rows × 3 columns = 18 cards -->
+                <figure class="card"><img class="media" src="media/cathedralpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Cathedral</strong><br>
+                        Horizontal Offset for Green: 2<br>
+                        Vertical Offset for Green: -12<br>
+                        Horizontal Offset for Red: 3<br>
+                        Vertical Offset for Red: -22
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/churchpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Church</strong><br>
+                        Horizontal Offset for Green: 0<br>
+                        Vertical Offset for Green: -136<br>
+                        Horizontal Offset for Red: -7<br>
+                        Vertical Offset for Red: -263
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/emirpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Emir</strong><br>
+                        Horizontal Offset for Green: 24<br>
+                        Vertical Offset for Green: -111<br>
+                        Horizontal Offset for Red: 41<br>
+                        Vertical Offset for Red: -215<br>
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/harvesterspyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Harvesters</strong><br>
+                        Horizontal Offset for Green: 16<br>
+                        Vertical Offset for Green: -101<br>
+                        Horizontal Offset for Red: 13<br>
+                        Vertical Offset for Red: -197
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/iconpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Icon</strong><br>
+                        Horizontal Offset for Green: 17<br>
+                        Vertical Offset for Green: -122<br>
+                        Horizontal Offset for Red: 22<br>
+                        Vertical Offset for Red: -237
+                    </figcaption>
+                </figure>
+
+                <figure class="card"><img class="media" src="media/italilpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Italil</strong><br>
+                        Horizontal Offset for Green: 21<br>
+                        Vertical Offset for Green: -124<br>
+                        Horizontal Offset for Red: 36<br>
+                        Vertical Offset for Red: -248
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/lastochikinopyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Lastochikino</strong><br>
+                        Horizontal Offset for Green: -2<br>
+                        Vertical Offset for Green: -165<br>
+                        Horizontal Offset for Red: -9<br>
+                        Vertical Offset for Red: -250
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/luganopyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Lugano</strong><br>
+                        Horizontal Offset for Green: -16<br>
+                        Vertical Offset for Green: -121<br>
+                        Horizontal Offset for Red: -28<br>
+                        Vertical Offset for Red: -231
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/melonspyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Melons</strong><br>
+                        Horizontal Offset for Green: 8<br>
+                        Vertical Offset for Green: -80<br>
+                        Horizontal Offset for Red: 11<br>
+                        Vertical Offset for Red: -146
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/monasterypyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Monastery</strong><br>
+                        Horizontal Offset for Green: 2<br>
+                        Vertical Offset for Green: -20<br>
+                        Horizontal Offset for Red: 3<br>
+                        Vertical Offset for Red: -31
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/self_portraitpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Self Portrait</strong><br>
+                        Horizontal Offset for Green: 27<br>
+                        Vertical Offset for Green: -85<br>
+                        Horizontal Offset for Red: 35<br>
+                        Vertical Offset for Red: -149
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/sirenpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Siren</strong><br>
+                        Horizontal Offset for Green: -7<br>
+                        Vertical Offset for Green: -113<br>
+                        Horizontal Offset for Red: -25<br>
+                        Vertical Offset for Red: -228
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/three_generationspyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Three Generations</strong><br>
+                        Horizontal Offset for Green: 11<br>
+                        Vertical Offset for Green: -106<br>
+                        Horizontal Offset for Red: 10<br>
+                        Vertical Offset for Red: -209
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/tobolskpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Tobolsk</strong><br>
+                        Horizontal Offset for Green: 3<br>
+                        Vertical Offset for Green: -14<br>
+                        Horizontal Offset for Red: 4<br>
+                        Vertical Offset for Red: -27
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/dampyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Dam (extra)</strong><br>
+                        Horizontal Offset for Green: 1<br>
+                        Vertical Offset for Green: -12<br>
+                        Horizontal Offset for Red: 1<br>
+                        Vertical Offset for Red: -23
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/mosquepyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Mosque (extra)</strong><br>
+                        Horizontal Offset for Green: 1<br>
+                        Vertical Offset for Green: -14<br>
+                        Horizontal Offset for Red: 1<br>
+                        Vertical Offset for Red: -26
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/napoleonpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Napoleon (extra)</strong><br>
+                        Horizontal Offset for Green: 1<br>
+                        Vertical Offset for Green: -11<br>
+                        Horizontal Offset for Red: 0<br>
+                        Vertical Offset for Red: -21
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/camelpyramid.jpg" />
+                    <figcaption class="caption">
+                        <strong>Camel (extra)</strong><br>
+                        Horizontal Offset for Green: 0<br>
+                        Vertical Offset for Green: -12<br>
+                        Horizontal Offset for Red: -2<br>
+                        Vertical Offset for Red: -24
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
