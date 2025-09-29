@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1efef;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #666;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            --maxw: 1100px;
+            --gap: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Latin Modern Roman', serif;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin: 0 0 10px;
+            letter-spacing: .5px;
+        }
+
+        .lead {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            margin: 0 auto 34px;
+            max-width: 900px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        section {
+            margin: 34px 0 44px;
+        }
+
+        section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        /* Reusable 3-up grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap);
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .media {
+            display: block;
+            width: 100%;
+            height: auto; 
+            background: #ddd;
+        }
+
+        .caption {
+            padding: 10px 12px 14px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header>
+            <h1>Project 2</h1>
+            
+        </header>
+
+        <section>
+            <header>
+                <h1>Part 1</h1>
+            </header>
+            <p class="lead">
+                Overall, my implementation of convolution yielded the same result as scipy's, with the 'same' mode for the filter. 
+                However, the process was significantly slower by orders of magnitude.
+            </p>
+            <div class="card-grid">
+
+                <figure class="card">
+                    <img class="media" src="media/myconvcode.png" />
+                    <figcaption class="caption">
+                        My Implementations of Convolutions
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/IMG_7773.jpg" />
+                    <figcaption class="caption">
+                        My Selfie
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/my_conv.png" />
+                    <figcaption class="caption">
+                        Picture of Box Filter on my Selfie with my Implementation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/scipy_conv.png" />
+                    <figcaption class="caption">
+                        Picture of Box Filter on my Selfie with Scipy's Implementation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/mypicture_dx.png" />
+                    <figcaption class="caption">
+                        Picture of Selfie Convolved with D_x
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/mypicture_dy.png" />
+                    <figcaption class="caption">
+                        Picture of Selfie Convolved with D_y
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Cameraman</h1>
+            </header>
+            <p class="lead">
+                    In order to choose the edges for the first picture of the cameraman, I just tried to get as many of his body 
+                    and his camera as possible, as those are the main edges, then I tried to add some of the background, but to varying 
+                    degrees of success. When I convolved with the Gaussian filter, it made it nicer in terms of getting rid of some of 
+                    the background noise, but it also made it harder in terms of getting the best edges. I settled on a tradeoff where you 
+                    can still clearly see his body, but there are some edges were there is still signifcant noise. Also notice that 
+                    there is no difference between doing the Gaussian and finite difference operators as one or two convolutions.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/cameraman_dx.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with D_x
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_dy.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with D_y
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_grad_mag.png" />
+                    <figcaption class="caption">
+                        Cameraman Gradient Magnitude
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/camera_man_edges.png" />
+                    <figcaption class="caption">
+                        Cameraman Edges
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_gauss_grad_mag.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with Gaussian Kernel Gradient Magnitude
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_gauss_edges.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with Gaussian Kernel Edges
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_gauss_one_grad_mag.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with Gaussian Kernel Gradient Magnitude One Convolution
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cameraman_gauss_one_edges.png" />
+                    <figcaption class="caption">
+                        Cameraman Convolved with Gaussian Kernel Gradient Edges One Convolution
+                    </figcaption>
+                </figure>
+            </div>
+
+        </section>
+
+        <section>
+            <header>
+                <h1>Part 2</h1>
+            </header>
+            <header>
+                <h1>Sharpening</h1>
+            </header>
+            <p class="lead">
+                Here I implemented an unsharp mask filter. Basically what it does is blur the image to find the low frequency parts 
+                of an image and then subtracts those from the image. From this, we obtain the high frequencies of the image which we 
+                can add back on to the image to make it sharper. As you can see varying the amount of sharpness makes somewhat of a 
+                change, but not a very pronounced one, at least not when you don't have a lot of original amount of high frequencies 
+                to work with like in the blurred cat example. 
+            </p>
+            <div class="card-grid">
+                <!-- 6 rows × 3 columns = 18 cards -->
+                <figure class="card"><img class="media" src="media/taj.jpg" />
+                    <figcaption class="caption">
+                        Normal Taj Mahal
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/blurred_taj.png" />
+                    <figcaption class="caption">
+                        Blurred Taj Mahal
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/high_freq_taj.png" />
+                    <figcaption class="caption">
+                       Taj Mahal High Frequencies
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/sharp_cat.jpeg" />
+                    <figcaption class="caption">
+                        Sharp Cat
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/blurred_cat.png" />
+                    <figcaption class="caption">
+                        Blurred Cat
+                    </figcaption>
+                </figure>
+
+                <figure class="card"><img class="media" src="media/sharp_3_cat.png" />
+                    <figcaption class="caption">
+                        Cat Sharpened with Sigma of 3
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/sharp_10_cat.png" />
+                    <figcaption class="caption">
+                        Cat Sharpened with Sigma of 10
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/cat_high_freq.png" />
+                    <figcaption class="caption">
+                        Cat High Frequencies
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Hybrid Images</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card"><img class="media" src="media/DerekPicture.jpg" />
+                    <figcaption class="caption">
+                        Derek
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/nutmeg.jpg" />
+                    <figcaption class="caption">
+                        Nutmeg
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/derekcat.png" />
+                    <figcaption class="caption">
+                        Derek Nutmeg
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/mahomes.jpg" />
+                    <figcaption class="caption">
+                        Mahomes
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/brady.jpg" />
+                    <figcaption class="caption">
+                        Brady
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/Brady_Mahomes.png" />
+                    <figcaption class="caption">
+                        Mahomes Brady
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/lebron.jpg" />
+                    <figcaption class="caption">
+                        LeBron
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/curry.jpg" />
+                    <figcaption class="caption">
+                        Curry
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/Lebron_curry.png" />
+                    <figcaption class="caption">
+                        LeBron Curry
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/lebron_freq.png" />
+                    <figcaption class="caption">
+                        LeBron Frequencies
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/lebron_low.png" />
+                    <figcaption class="caption">
+                        LeBron Low Frequencies
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/curry_freq.png" />
+                    <figcaption class="caption">
+                        Curry Frequencies
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/curry_high.png" />
+                    <figcaption class="caption">
+                        Curry High Frequencies
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/curry_bron.png" />
+                    <figcaption class="caption">
+                        LeBron Curry Frequencies
+                    </figcaption>
+                </figure>
+            </div>
+            <header><h1>Blending</h1></header>
+            <header><h2>Stacks</h2></header>
+            <div class="card-grid">
+                <figure class="card"><img class="media" src="media/apple.jpeg" />
+                    <figcaption class="caption">
+                        Apple
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_g_1.png" />
+                    <figcaption class="caption">
+                        Apple Gauss Stack Level 1
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_g_2.png" />
+                    <figcaption class="caption">
+                        Apple Gauss Stack Level 2
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_g_3.png" />
+                    <figcaption class="caption">
+                        Apple Gauss Stack Level 3
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_g_4.png" />
+                    <figcaption class="caption">
+                        Apple Gauss Stack Level 4
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_l_1.png" />
+                    <figcaption class="caption">
+                        Apple Laplace Stack Level 1
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_l_2.png" />
+                    <figcaption class="caption">
+                        Apple Laplace Stack Level 2
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_l_3.png" />
+                    <figcaption class="caption">
+                        Apple Laplace Stack Level 3
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/apple_l_4.png" />
+                    <figcaption class="caption">
+                        Apple Laplace Stack Level 4
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card"><img class="media" src="media/orange.jpeg" />
+                    <figcaption class="caption">
+                        Orange
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_g_1.png" />
+                    <figcaption class="caption">
+                        Orange Gauss Stack Level 1
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_g_2.png" />
+                    <figcaption class="caption">
+                        Orange Gauss Stack Level 2
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_g_3.png" />
+                    <figcaption class="caption">
+                        Orange Gauss Stack Level 3
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_g_4.png" />
+                    <figcaption class="caption">
+                        Orange Gauss Stack Level 4
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_l_1.png" />
+                    <figcaption class="caption">
+                        Orange Laplace Stack Level 1
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_l_2.png" />
+                    <figcaption class="caption">
+                        Orange Laplace Stack Level 2
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_l_3.png" />
+                    <figcaption class="caption">
+                        Orange Laplace Stack Level 3
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/orange_l_4.png" />
+                    <figcaption class="caption">
+                        Orange Laplace Stack Level 4
+                    </figcaption>
+                </figure>
+            </div>
+            <header><h2>
+                Fig 3.42 Remake
+            </h2></header>
+            <div class="card-grid">
+            <figure class="card"><img class="media" src="media/a.png" />
+                <figcaption class="caption">
+                    A
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/b.png" />
+                <figcaption class="caption">
+                    B
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/c.png" />
+                <figcaption class="caption">
+                    C
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/d.png" />
+                <figcaption class="caption">
+                    D
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/e.png" />
+                <figcaption class="caption">
+                    E
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/f.png" />
+                <figcaption class="caption">
+                    F
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/g.png" />
+                <figcaption class="caption">
+                    G
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/h.png" />
+                <figcaption class="caption">
+                    H
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/i.png" />
+                <figcaption class="caption">
+                    I
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/j.png" />
+                <figcaption class="caption">
+                    J
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/k.png" />
+                <figcaption class="caption">
+                    K
+                </figcaption>
+            </figure>
+            <figure class="card"><img class="media" src="media/l.png" />
+                <figcaption class="caption">
+                    L
+                </figcaption>
+            </figure>
+            </div>
+            <header><h2>Custom Blends</h2></header>
+            <div class="card-grid">
+                <figure class="card"><img class="media" src="media/eye.png" />
+                    <figcaption class="caption">
+                        Eye
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/hand.png" />
+                    <figcaption class="caption">
+                        Hand
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/eye_on_hand.png" />
+                    <figcaption class="caption">
+                        Eye on Hand
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/wall.jpg" />
+                    <figcaption class="caption">
+                        Wall
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/smile.jpg" />
+                    <figcaption class="caption">
+                        Face
+                    </figcaption>
+                </figure>
+                <figure class="card"><img class="media" src="media/mouth_on_wall.png" />
+                    <figcaption class="caption">
+                        Mouth on Wall
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

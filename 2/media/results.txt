@@ -1,0 +1,107 @@
+Naive Offsets:
+    tobolsk:
+        Vertical offset for Green: 3
+        Horizontal offset for Green: -14
+        Vertical offset for Red: 3
+        Horizontal offset for Red: -28
+    cathedral:
+        Vertical offset for Green: 2
+        Horizontal offset for Green: -12
+        Vertical offset for Red: 3
+        Horizontal offset for Red: -22
+    monastery:
+        Vertical offset for Green: 2
+        Horizontal offset for Green: -20
+        Vertical offset for Red: 2
+        Horizontal offset for Red: -31
+Pyramid Offsets:
+    tobolsk:
+        Horizontal Offset for Green: 3
+        Vertical Offset for Green: -14
+        Horizontal Offset for Red: 4
+        Vertical Offset for Red: -27
+    cathedral:
+        Horizontal Offset for Green: 2
+        Vertical Offset for Green: -12
+        Horizontal Offset for Red: 3
+        Vertical Offset for Red: -22
+    monastery:
+        Horizontal Offset for Green: 2
+        Vertical Offset for Green: -20
+        Horizontal Offset for Red: 3
+        Vertical Offset for Red: -31
+    church:
+        Horizontal Offset for Green: 0
+        Vertical Offset for Green: -136
+        Horizontal Offset for Red: -7
+        Vertical Offset for Red: -263
+    emir:
+        Horizontal Offset for Green: 24
+        Vertical Offset for Green: -111
+        Horizontal Offset for Red: 41
+        Vertical Offset for Red: -215
+    harvesters:
+        Horizontal Offset for Green: 16
+        Vertical Offset for Green: -101
+        Horizontal Offset for Red: 13
+        Vertical Offset for Red: -197
+    icon:
+        Horizontal Offset for Green: 17
+        Vertical Offset for Green: -122
+        Horizontal Offset for Red: 22
+        Vertical Offset for Red: -237
+    italil:
+        Horizontal Offset for Green: 21
+        Vertical Offset for Green: -124
+        Horizontal Offset for Red: 36
+        Vertical Offset for Red: -248
+    lastochikino:
+        Horizontal Offset for Green: -2
+        Vertical Offset for Green: -165
+        Horizontal Offset for Red: -9
+        Vertical Offset for Red: -250
+    lugano:
+        Horizontal Offset for Green: -16
+        Vertical Offset for Green: -121
+        Horizontal Offset for Red: -28
+        Vertical Offset for Red: -231
+    melons:
+        Horizontal Offset for Green: 8
+        Vertical Offset for Green: -80
+        Horizontal Offset for Red: 11
+        Vertical Offset for Red: -146
+    self_portrait:
+        Horizontal Offset for Green: 27
+        Vertical Offset for Green: -85
+        Horizontal Offset for Red: 35
+        Vertical Offset for Red: -149
+    siren:
+        Horizontal Offset for Green: -7
+        Vertical Offset for Green: -113
+        Horizontal Offset for Red: -25
+        Vertical Offset for Red: -228
+    three_generations:
+        Horizontal Offset for Green: 11
+        Vertical Offset for Green: -106
+        Horizontal Offset for Red: 10
+        Vertical Offset for Red: -209
+    camel:
+        Horizontal Offset for Green: 0
+        Vertical Offset for Green: -12
+        Horizontal Offset for Red: -2
+        Vertical Offset for Red: -24
+    dam:
+        Horizontal Offset for Green: 1
+        Vertical Offset for Green: -12
+        Horizontal Offset for Red: 1
+        Vertical Offset for Red: -23
+    napolean:
+        Horizontal Offset for Green: 1
+        Vertical Offset for Green: -11
+        Horizontal Offset for Red: 0
+        Vertical Offset for Red: -21
+    mosque:
+        Horizontal Offset for Green: 1
+        Vertical Offset for Green: -14
+        Horizontal Offset for Red: 1
+        Vertical Offset for Red: -26
