@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1efef;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #666;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            --maxw: 1100px;
+            --gap: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Latin Modern Roman', serif;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin: 0 0 10px;
+            letter-spacing: .5px;
+        }
+
+        .lead {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            margin: 0 auto 34px;
+            max-width: 900px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        section {
+            margin: 34px 0 44px;
+        }
+
+        section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        /* Reusable 3-up grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap);
+            justify-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .media {
+            display: block;
+            width: 100%;
+            height: auto; 
+            background: #ddd;
+        }
+
+        .caption {
+            padding: 10px 12px 14px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header>
+            <h1>Project 3A</h1>
+        </header>
+
+        <section>
+            <header>
+                <h1>Projective Transformation Images</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/garage_left.jpg" />
+                    <figcaption class="caption">
+                        Garage Door
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/garage_right.jpg" />
+                    <figcaption class="caption">
+                        Rotated Shot of Garage Door
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/street_left.jpg" />
+                    <figcaption class="caption">
+                        Street
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/street_right.jpg" />
+                    <figcaption class="caption">
+                        Rotated Shot of the Street
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Correspondences</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/c_left.png" />
+                    <figcaption class="caption">
+                        Green Dots Showing Correspondences on One Image
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/c_right.png" />
+                    <figcaption class="caption">
+                        Green Dots Showing Correspondences on Another Image
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/systems_of_equations.png" />
+                    <figcaption class="caption">
+                        System of Equations for Images
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/h_matrix.png" />
+                    <figcaption class="caption">
+                        Homography Matrix
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Rectification</h1>
+            </header>
+            <p class="lead">
+                Nearest Neighbors gets you much faster results, but Bilinear gets you nicer looking results. 
+                On small looking images, the difference isn't too noticeable, but on bigger images where there's 
+                far more pixels, it's quite noticeable.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/tile.jpg" />
+                    <figcaption class="caption">
+                        Original Non-Rectified Tile
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tile_nn.png" />
+                    <figcaption class="caption">
+                        Tile Rectified with Nearest Neighbors
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tile_bl.png" />
+                    <figcaption class="caption">
+                        Tile Rectified with Bilinear
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/floor.jpg" />
+                    <figcaption class="caption">
+                        Original Non-Rectified Square
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/floor_nn.png" />
+                    <figcaption class="caption">
+                        Square Rectified with Nearest Neighbors
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/floor_bl.png" />
+                    <figcaption class="caption">
+                        Square Rectified with Bilinear
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Mosaics</h1>
+            </header>
+            <p class="lead">
+                For my mosaics, I decided to use the Bilinear interpolation method because while it was 
+                a little slower to run the code, on these bigger images, I felt like I could see the difference 
+                in quality between Nearest Neighbors and Bilinear. In order to place the two images together, 
+                I first had to make a new canvas to put the two images together. I calculated the canvas based on 
+                how the Homography matrix changed the one warped image I was going to use. I then calculated 
+                how big the actual canvas was going to need to be in order to accomodate the two images. I then 
+                overlaid one image onto another. In order to try to reduce image artifacts, I 
+                decided to implement an averaging system that determines where there is overlap and then basically 
+                takes the average of the two images there.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/cars_left.jpg" />
+                    <figcaption class="caption">
+                        Image of Cars
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cars_right.jpg" />
+                    <figcaption class="caption">
+                        Image of Cars Rotated
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cars_mosaic.png" />
+                    <figcaption class="caption">
+                        Mosaic of the Two Images
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/garage_left.jpg" />
+                    <figcaption class="caption">
+                        Image of Garage
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/garage_right.jpg" />
+                    <figcaption class="caption">
+                        Image of Garage Rotated
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/garage_mosaic.png" />
+                    <figcaption class="caption">
+                        Mosaic of the Two Images
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/street_left.jpg" />
+                    <figcaption class="caption">
+                        Image of Street
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/street_right.jpg" />
+                    <figcaption class="caption">
+                        Image of Street Rotated
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/street_mosaic.png" />
+                    <figcaption class="caption">
+                        Mosaic of the Two Images
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
