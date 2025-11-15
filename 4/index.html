@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1efef;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #666;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            --maxw: 1100px;
+            --gap: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Latin Modern Roman', serif;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin: 0 0 10px;
+            letter-spacing: .5px;
+        }
+
+        .lead {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            margin: 0 auto 34px;
+            max-width: 900px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        section {
+            margin: 34px 0 44px;
+        }
+
+        section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        /* Reusable 3-up grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap);
+            justify-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .media {
+            display: block;
+            width: 100%;
+            height: auto; 
+            background: #ddd;
+        }
+
+        .caption {
+            padding: 10px 12px 14px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header>
+            <h1>Project 4</h1>
+        </header>
+
+        <section>
+            <header>
+                <h1>Part 0</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/photo1viser.png" />
+                    <figcaption class="caption">
+                        My Photos in Viser
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/photo2viser.png" />
+                    <figcaption class="caption">
+                        My Photos in Viser
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1</h1>
+            </header>
+            <p class="lead">
+                For my model, I went with the model described in the spec. That is 3 linear layers of 
+                width 256, with a final linear layer of width 3, with ReLUs in between and a sigmoid at 
+                the end. I also fed in a positional encoding in the first linear layer. For the Positional Encoding 
+                I went with an L of 10. My learning rate was 0.01. My batch sizes were 10k.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/fox.jpg" />
+                    <figcaption class="caption">
+                        Original Fox Image
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/fox0.png" />
+                    <figcaption class="caption">
+                        Model at 0 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/fox50.png" />
+                    <figcaption class="caption">
+                        Model at 50 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/fox300.png" />
+                    <figcaption class="caption">
+                        Model at 300 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/foxfinal.png" />
+                    <figcaption class="caption">
+                        Final Model Render
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/bike.jpg" />
+                    <figcaption class="caption">
+                        Original Bike Image
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike0.png" />
+                    <figcaption class="caption">
+                        Model at 0 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike50.png" />
+                    <figcaption class="caption">
+                        Model at 50 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike300.png" />
+                    <figcaption class="caption">
+                        Model at 300 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bikefinal.png" />
+                    <figcaption class="caption">
+                        Final Model Render
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/PSNRcurveForBike.png" />
+                    <figcaption class="caption">
+                        PSNR Curve for the Bike Model
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/FoxL10W256.png" />
+                    <figcaption class="caption">
+                        Fox with L = 10, Width = 256
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/FoxL10W128.png" />
+                    <figcaption class="caption">
+                        Fox with L = 10, Width = 128
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/FoxL15W256.png" />
+                    <figcaption class="caption">
+                        Fox with L = 15, Width = 256
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/FoxL15W128.png" />
+                    <figcaption class="caption">
+                        Fox with L = 15, Width = 128
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 2</h1>
+            </header>
+            <p class="lead">
+                Part 2.1: <br>For transform, it's basically just doing the calculation shown but batched. Similar for 
+                pixel_to_camera, but being more clever by avoiding matrix inversion where I can. Finally, pixel_to_ray 
+                uses the previous two functions to calculate Xw and then performs the given calculation.<br>
+                Part 2.2: <br> For sampling Rays from Images, what it does is first build a uv grid for each image. It 
+                then uses the pixel_to_ray function to create rays for every pixel in each image. It then puts them together 
+                flattened out and samples randomly from all the available rays in a flattened list. For sample along rays, it 
+                takes points evenly along the near and far, except for when there's a perturbation, when instead of sampling at the 
+                exact middle where it should ideally be, it adds a small bit of noise to sample randomly. It then returns these 
+                points as the samples. <br>
+                Part 2.3: <br> I just put the previous parts inside a torch dataset and a separate function, respectively.<br>
+                Part 2.4: <br> I used the same idea as before but with rays now. The network is exactly how it was 
+                described in spec. <br>
+                Part 2.5: <br> For volrend, I basically did the equation, but I used vectorized code to make it faster to compute. <br>
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/rayscam.png" />
+                    <figcaption class="caption">
+                        Rays and Samples with Pics
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/raysnocam.png" />
+                    <figcaption class="caption">
+                        Rays and Samples without Pics
+                    </figcaption>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/lego50.png" />
+                    <figcaption class="caption">
+                        Lego at 50 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lego100.png" />
+                    <figcaption class="caption">
+                        Lego at 100 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lego300.png" />
+                    <figcaption class="caption">
+                        Lego at 300 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lego1200.png" />
+                    <figcaption class="caption">
+                        Lego at 1200 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lego_orbit.gif" loop />
+                    <figcaption class="caption">
+                        Lego Orbit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/legopsnr.png" />
+                    <figcaption class="caption">
+                        Lego PSNR Curve
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+        <section>
+            <header>
+                <h1>Part 2.6</h1>
+            </header>
+            <p class="lead">For the code, I used the same model as I did for the Lego Scene</p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/step50.png" />
+                    <figcaption class="caption">
+                        50 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/step2000.png" />
+                    <figcaption class="caption">
+                        2000 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/step10000.png" />
+                    <figcaption class="caption">
+                        10000 steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/Finalimage.png" />
+                    <figcaption class="caption">
+                        37450 Steps
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cube.gif" loop />
+                    <figcaption class="caption">
+                        Cube Orbit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cubepsnr.png" />
+                    <figcaption class="caption">
+                        Cube Loss Curve
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
