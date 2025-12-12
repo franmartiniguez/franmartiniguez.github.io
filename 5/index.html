@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1efef;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #666;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            --maxw: 1100px;
+            --gap: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Latin Modern Roman', serif;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin: 0 0 10px;
+            letter-spacing: .5px;
+        }
+
+        .lead {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            margin: 0 auto 34px;
+            max-width: 900px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        section {
+            margin: 34px 0 44px;
+        }
+
+        section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        /* Reusable 3-up grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap);
+            justify-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .media {
+            display: block;
+            width: 100%;
+            height: auto; 
+            background: #ddd;
+        }
+
+        .caption {
+            padding: 10px 12px 14px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header>
+            <h1>Project 5</h1>
+        </header>
+        <header>
+            <h1>Part A</h1>
+        </header>
+        <section>
+            <header>
+                <h1>Part 0</h1>
+            </header>
+            <p class="lead">
+                Seed was set to 100.<br>
+                The difference of adding more inference steps is mainly that the images looked more 
+                realistic and cleaner. Few inference steps, like 5, still looked much like noise, while 
+                inference steps at 100 started to look much higher quality and somewhat realistic.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/road_bike_5.png" />
+                    <figcaption class="caption">
+                        Prompt: 'a photo of a road bike' (5 Inference Steps)
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/road_bike_20.png" />
+                    <figcaption class="caption">
+                        Prompt: 'a photo of a road bike' (20 Inference Steps)
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/road_bike_100.png" />
+                    <figcaption class="caption">
+                        Prompt: 'a photo of a road bike' (100 Inference Steps)
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/mountain.png" />
+                    <figcaption class="caption">
+                        Prompt: 'a paintaing of a mountain when turned upside down is a fire'
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/puppy.png" />
+                    <figcaption class="caption">
+                        Prompt: 'a photo of a puppy'
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.1</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/campanile.png" />
+                    <figcaption class="caption">
+                        Original Campanile
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile250.png" />
+                    <figcaption class="caption">
+                        Campanile at 250 Noise
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile500.png" />
+                    <figcaption class="caption">
+                        Campanile at 500 Noise
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile750.png" />
+                    <figcaption class="caption">
+                        Campanile at 750 Noise
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.2</h1>
+            </header>
+                <div class="card-grid">
+                    <figure class="card">
+                        <img class="media" src="media/campanile_denoised250.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised at 250 Noise
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_denoised500.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised at 500 Noise
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_denoised750.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised at 750 Noise
+                        </figcaption>
+                    </figure>
+                </div>
+            <header>
+                <h1>Part 1.3</h1>
+            </header>
+            <div class="card-grid">
+                    <figure class="card">
+                        <img class="media" src="media/campanile_onestep250.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised Using One Step Diffusion at 250 Noise
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_onestep500.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised Using One Step Diffusion at 500 Noise
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_onestep750.png" />
+                        <figcaption class="caption">
+                            Campanile Denoised Using One Step Diffusion at 750 Noise
+                        </figcaption>
+                    </figure>
+                </div>
+            <header>
+                <h1>Part 1.4</h1>
+            </header>
+            <div class="card-grid">
+                    <figure class="card">
+                        <img class="media" src="media/campanile_iterative1.png" />
+                        <figcaption class="caption">
+                            Iterative Denoising
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_iterative2.png" />
+                        <figcaption class="caption">
+                            Iterative Denoising
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_iterative3.png" />
+                        <figcaption class="caption">
+                            Iterative Denoising
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_iterative4.png" />
+                        <figcaption class="caption">
+                            Iterative Denoising
+                        </figcaption>
+                    </figure>
+                    <figure class="card">
+                        <img class="media" src="media/campanile_iterative5.png" />
+                        <figcaption class="caption">
+                            Iterative Denoising
+                        </figcaption>
+                    </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/campanile_iterative.png" />
+                    <figcaption class="caption">
+                        Campanile Denoised Using Iterative Denoising
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_clean_one_step.png" />
+                    <figcaption class="caption">
+                        Campanile Denoised Using One Step Diffusion
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_clean_blur.png" />
+                    <figcaption class="caption">
+                        Campanile Denoised Using Gaussian Blurring
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.5</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/sample1.png" />
+                    <figcaption class="caption">
+                        Random Noise Sample 1
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sample2.png" />
+                    <figcaption class="caption">
+                        Random Noise Sample 2
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sample3.png" />
+                    <figcaption class="caption">
+                        Random Noise Sample 3
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sample4.png" />
+                    <figcaption class="caption">
+                        Random Noise Sample 4
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sample5.png" />
+                    <figcaption class="caption">
+                        Random Noise Sample 5
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.6</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/cfgsample1.png" />
+                    <figcaption class="caption">
+                        Random Noise CFG Sample 1
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cfgsample2.png" />
+                    <figcaption class="caption">
+                        Random Noise CFG Sample 2
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cfgsample3.png" />
+                    <figcaption class="caption">
+                        Random Noise CFG Sample 3
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cfgsample4.png" />
+                    <figcaption class="caption">
+                        Random Noise CFG Sample 4
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cfgsample5.png" />
+                    <figcaption class="caption">
+                        Random Noise CFG Sample 5
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.7</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/campanile.png" />
+                    <figcaption class="caption">
+                        Original Campanile
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cervelo.jpg" />
+                    <figcaption class="caption">
+                        Original Bike
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car.jpg" />
+                    <figcaption class="caption">
+                        Original Car
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation1.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation2.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation3.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation4.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation5.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_translation6.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation1.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation2.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation3.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation4.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation5.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_translation6.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation1.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation2.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation3.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation4.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation5.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_translation6.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.7.1</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/lebron.png" />
+                    <figcaption class="caption">
+                        Original Lebron Drawing
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike.png" />
+                    <figcaption class="caption">
+                        Original Bike Drawing
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree.png" />
+                    <figcaption class="caption">
+                        Original Tree Drawing
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation1.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation2.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation3.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation4.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation5.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/lebron_translation6.png" />
+                    <figcaption class="caption">
+                        LeBron Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation1.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation2.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation3.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation4.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation5.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/hand_bike_translation6.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation1.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation2.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation3.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation4.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation5.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/tree_translation6.png" />
+                    <figcaption class="caption">
+                        Tree Image Translation
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.7.2</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/campanile.png" />
+                    <figcaption class="caption">
+                        Original Campanile
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/campanile_inpaint.png" />
+                    <figcaption class="caption">
+                        Campanile Inpainted
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/cervelo.jpg" />
+                    <figcaption class="caption">
+                        Original Bike
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/bike_inpaint.png" />
+                    <figcaption class="caption">
+                        Bike Inpainted
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/car.jpg" />
+                    <figcaption class="caption">
+                        Original Car
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car_inpaint.png" />
+                    <figcaption class="caption">
+                        Car Inpainted
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1> Part 1.7.3</h1>
+            </header>
+            <p class="lead">Prompt Used: 'a painting of snow'</p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/campanile.png" />
+                    <figcaption class="caption">
+                        Original Campanile
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/cervelo.jpg" />
+                    <figcaption class="caption">
+                        Original Bike
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/car.jpg" />
+                    <figcaption class="caption">
+                        Original Car
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation1.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation2.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation3.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation4.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation5.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_campanile_translation6.png" />
+                    <figcaption class="caption">
+                        Campanile Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation1.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation2.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation3.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation4.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation5.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_bike_translation6.png" />
+                    <figcaption class="caption">
+                        Bike Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation1.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation2.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation3.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation4.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation5.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/snow_car_translation6.png" />
+                    <figcaption class="caption">
+                        Car Image Translation
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.8</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/snow_painting.png" />
+                    <figcaption class="caption">
+                        'a painting of snow'
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sheep_painting.png" />
+                    <figcaption class="caption">
+                        'a painting of a sheep'
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/mountain_painting.png" />
+                    <figcaption class="caption">
+                        'a painting of a mountain'
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/fire_painting.png" />
+                    <figcaption class="caption">
+                        'a painting of a fire'
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.9</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/mountain_skyscraper.png" />
+                    <figcaption class="caption">
+                        Mountain and Skyscraper Hybrid
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sheep_bike.png" />
+                    <figcaption class="caption">
+                        Sheep and Bike Hybrid
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+        <header>
+            <h1>Part B</h1>
+        </header>
+        <section>
+            <header>
+                <h1>Part 1.2</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/sigma0.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.0
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma2.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.2
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma4.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.4
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma5.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.5
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma6.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.6
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma8.png" />
+                    <figcaption class="caption">
+                        Noise sigma=0.8
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/sigma1.png" />
+                    <figcaption class="caption">
+                        Noise sigma=1.0
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.2.1</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/1_2_1_loss.png" />
+                    <figcaption class="caption">
+                        Training Loss Curve
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/7.png" />
+                    <figcaption class="caption">
+                        Original Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/2.png" />
+                    <figcaption class="caption">
+                        Original Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/1.png" />
+                    <figcaption class="caption">
+                        Original Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/noisy7.png" />
+                    <figcaption class="caption">
+                        Noisy Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/noisy2.png" />
+                    <figcaption class="caption">
+                        Noisy Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/noisy1.png" />
+                    <figcaption class="caption">
+                        Noisy Digit
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised70.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after First Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised20.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after First Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised10.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after First Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised7.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after Fifth Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised2.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after Fifth Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised1.png" />
+                    <figcaption class="caption">
+                        Denoised Digit after Fifth Epoch
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.2.2</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy0.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.0
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised0.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.0
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy2sigma.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.2
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised2sigma.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.2
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy4.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.4
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised4.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.4
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy5.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.5
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised5.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.5
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy6.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.6
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised6.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.6
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy8.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=0.8
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised8.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=0.8
+                    </figcaption>
+                </figure>
+                </div><div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/noisy1sigma.png" />
+                    <figcaption class="caption">
+                        Digit with Noise at Sigma=1.0
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/denoised1sigma.png" />
+                    <figcaption class="caption">
+                        Digit Denoised at Sigma=1.0
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 1.2.3</h1>
+            </header>
+            <p class="lead">
+                The denoised images look like a blob of white at the center. The reason 
+                for this is because the MSE tries to minimize the distance between the prediction 
+                and the actual image. Since the model is prediciting just basically a random image, 
+                the best thing to do in order to minimize the loss is just predict a blob of white 
+                at the center, since that's what's closest to any random digit.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/1_2_3_loss.png" />
+                    <figcaption class="caption">
+                        Training Loss Curve
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/pure_noise_denoised0.png" />
+                    <figcaption class="caption">
+                        Pure Noise Denoised after First Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/pure_noise_denoised4.png" />
+                    <figcaption class="caption">
+                        Pure Noise Denoised after Fifth Epoch
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 2.2</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/2_2_loss_curve.png" />
+                    <figcaption class="caption">
+                        Training Loss Curve
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 2.3</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/1_epoch_time_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 1 Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/5_epoch_time_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 5 Epochs
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/10_epoch_time_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 10 Epochs
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 2.5</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/2_5_loss_curve.png" />
+                    <figcaption class="caption">
+                        Training Loss Curve
+                    </figcaption>
+                </figure>
+            </div>
+            <header>
+                <h1>Part 2.3</h1>
+            </header>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/1_epoch_class_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 1 Epoch
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/5_epoch_class_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 5 Epochs
+                    </figcaption>
+                </figure>
+                <figure class="card">
+                    <img class="media" src="media/10_epoch_class_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 10 Epochs
+                    </figcaption>
+                </figure>
+            </div>
+            <p class="lead">
+                I removed the scheduler and made no alterations otherwise. Performace seems to 
+                have been maintained.
+            </p>
+            <div class="card-grid">
+                <figure class="card">
+                    <img class="media" src="media/10_epoch_class_no_scheduler_curve.png" />
+                    <figcaption class="caption">
+                        Sample after Training for 10 Epochs with No Scheduler
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
